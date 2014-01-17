@@ -1,4 +1,4 @@
-Enter file contents herepackage rss;
+package rss;
 
 public class cleanr {
 	// this replaces html ASCII code with their appropriate value, likely to throw an exception if given normal string
@@ -42,3 +42,4 @@ public class cleanr {
 		return s.replaceAll("&.*?;","");
 	}
 }
+	
