@@ -10,9 +10,8 @@ public class RssCleanr {
 	 */
 	public String asciiToText(String s){
 		
-		try{
-		
-		
+	
+		assert s != null;
 		
 		if (s.length() > 3) {
 			if (s.substring(0, 4).equals("&lt;"))
@@ -31,11 +30,9 @@ public class RssCleanr {
 		}
 		return removeAmp(s);
 		
-		}
-		catch(NullPointerException e){
-			System.out.println("null pointer in asciiToText, please check url validity");
-		}
-		return null;
+		
+		
+		
 	}
 
 	/**
@@ -53,12 +50,8 @@ public class RssCleanr {
 	 * @return s
 	 */
 	public String removeTags(String s) {
-		try{
+		assert s != null;
 		return s.replaceAll("<.*?>", "");
-		}catch (NullPointerException e){
-			System.out.println("null pointer in asciiToText, please check url validity");
-			return null;
-		}
 	}
 	
 	

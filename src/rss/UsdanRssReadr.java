@@ -1,5 +1,6 @@
 package rss;
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -9,13 +10,21 @@ public class UsdanRssReadr {
 
 	private URL url;
 	
-	
+	/**
+	 * get url
+	 * @return url
+	 */
+	public URL getUrl(){
+		return this.url;
+	}
 /**
  * This turns a string into a URL object
  * @param webAddress
  * @return url
  */
+	
 	public URL setUrl(String webAddress) {
+		assert webAddress != null;
 		try {
 			this.url = new URL(webAddress);
 			return url;
@@ -32,6 +41,14 @@ public class UsdanRssReadr {
  * @throws Exception
  */
 	public String readFromFeed(URL inputURL) throws Exception {
+		URL u = null;
+		try {
+			u = new URL("http://legacy.cafebonappetit.com/rss/menu/332");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assert u == inputURL;
 		int count = 0;
 		String menuItems = "";
 		RssCleanr cleanr = new RssCleanr();
@@ -54,20 +71,25 @@ public class UsdanRssReadr {
 		return cleanr.removeTags(menuItems);
 	}
 
-	
+	/**
+	 * Print's weekly menu for Usdan.
+	 */
+	public String getMenu() {
+		try {
+			return (readFromFeed(setUrl("http://legacy.cafebonappetit.com/rss/menu/332")));
+		} catch (Exception e) {
+			System.out.println("wrong URL system crash");
+			return null;
+		}
+	}
+
 	/**http://legacy.cafebonappetit.com/rss/menu/332
 	 * prints the menu for the week according to bon appetite 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		UsdanRssReadr readr = new UsdanRssReadr();
-		try {
-
-			System.out.println(readr.readFromFeed(readr
-					.setUrl("http://legacy.cafebonappetit.com/rss/menu/332")));
-		} catch (Exception e) {
-			System.out.println("wrong URL system crash");
-		}
+		System.out.println(readr.getMenu());
 	}
 
 }

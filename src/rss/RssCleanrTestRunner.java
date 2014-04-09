@@ -3,6 +3,10 @@ package rss;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 
@@ -18,4 +22,3 @@ public class RssCleanrTestRunner {
 
 	}
 }
-
