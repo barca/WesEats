@@ -82,6 +82,64 @@ public class UsdanRssReadr {
 			return null;
 		}
 	}
+	/**
+	 * returns the daily menu by parsing the file
+	 */
+	 
+	 String getTodaysMenu(){
+		
+		
+		String weekMenu = getMenu();
+
+		DateFormat todayFormat = new SimpleDateFormat("EEE, dd MMM yyyy");
+		DateFormat dayFormat = new SimpleDateFormat("EEE");
+		Date dateToday = new Date();
+		String today = todayFormat.format(dateToday);
+		
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_YEAR, 1);
+		Date dateTomorrow = calendar.getTime();
+		
+		String tomorrow = todayFormat.format(dateTomorrow);
+		String day = todayFormat.format(dateToday);
+		day = day.substring(0,3);
+		System.out.println(day);
+		String dailyMenu = "";
+
+		String Temp = "";
+		while (weekMenu.length() > today.length()){
+			if(weekMenu.substring(0,today.length()).equals(today)){
+				Temp = weekMenu;
+				if(day.equals("Sun")){
+					return weekMenu;
+				}
+				else{
+					
+					
+					while(weekMenu.length() > tomorrow.length()){
+						//System.out.println("trigger 3");
+						
+						dailyMenu = dailyMenu + weekMenu.substring(0,1);
+						
+						weekMenu = weekMenu.substring(1);
+						
+						if(weekMenu.substring(0,tomorrow.length()).equals(tomorrow)){
+							return dailyMenu;
+						}
+						
+						
+					}		
+				}
+			}
+			else{
+				weekMenu = weekMenu.substring(1);
+			
+			}
+			
+		}
+		return Temp.replace(dailyMenu,"");
+	}
 
 	/**http://legacy.cafebonappetit.com/rss/menu/332
 	 * prints the menu for the week according to bon appetite 
@@ -89,7 +147,7 @@ public class UsdanRssReadr {
 	 */
 	public static void main(String[] args) {
 		UsdanRssReadr readr = new UsdanRssReadr();
-		System.out.println(readr.getMenu());
+		System.out.println(readr.getTodaysMenu());
 	}
 
 }
