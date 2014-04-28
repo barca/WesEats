@@ -104,7 +104,6 @@ public class UsdanRssReadr {
 		String tomorrow = todayFormat.format(dateTomorrow);
 		String day = todayFormat.format(dateToday);
 		day = day.substring(0,3);
-		System.out.println(day);
 		String dailyMenu = "";
 
 		String Temp = "";
@@ -118,8 +117,7 @@ public class UsdanRssReadr {
 					
 					
 					while(weekMenu.length() > tomorrow.length()){
-						//System.out.println("trigger 3");
-						
+
 						dailyMenu = dailyMenu + weekMenu.substring(0,1);
 						
 						weekMenu = weekMenu.substring(1);
